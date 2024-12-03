@@ -119,20 +119,33 @@ class Triangle
             B_{b_x, b_y},
             C_{c_x, c_y}
             {}
+
+        Triangle(Point a, Point b, Point c):
+            A_{a},
+            B_{b},
+            C_{c}
+            {}
+        
         
         Point& setA(double x, double y)
         {
             A_ = {x, y};
+
+            return A_;
         }
 
         Point& setB(double x, double y)
         {
             B_ = {x, y};
+
+            return B_;
         }
 
         Point& setC(double x, double y)
         {
             C_ = {x, y};
+
+            return C_;
         }
 
         Point getA()
@@ -150,10 +163,27 @@ class Triangle
             return C_;
         }
 
-        bool isFirure()
+        double getSquare()
         {
-
+            return square;
         }
+
+        bool isTriangle()
+        {
+            return  AB_len<AC_len+BC_len && 
+                    AC_len<AB_len+BC_len && 
+                    BC_len<AB_len+AC_len;
+        }
+        
+        bool isEqual(Triangle triangle)
+        {
+            Point a = triangle.getA();
+            Point b = triangle.getB();
+            Point c = triangle.getC();
+
+            return a == A_ && b == B_ && c == C_;
+        
+        }        
 
         double getPerimeter()
         {
@@ -183,7 +213,23 @@ class Triangle
             return perimeter_triangle;
        }
 
-       
+       void move(double k)
+       {
+            A_ = A_ + k;
+            B_ = B_ + k;
+            C_ = C_ + k;
+       }
 
 
+       bool isEqualSquare(Triangle triangle){
+            return triangle.getSquare() == square;
+       }
+
+        Triangle output()
+        {
+            return {A_, B_, C_};
+        }
+
+
+        ~Triangle(){}
 };
